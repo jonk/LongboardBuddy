@@ -23,11 +23,22 @@
 }
 
 - (IBAction)startPressed:(id)sender;
-- (IBAction)addSesh:(id)sender;
+- (IBAction)addRun:(id)sender;
 
 @property (strong, nonatomic) IBOutlet UILabel *stopWatchLabel;
 @property (strong, nonatomic) IBOutlet UIButton *startButton;
+@property (strong, nonatomic) IBOutlet UIButton *addButton;
 @property (nonatomic, strong) LocationController *CLController;
 @property (nonatomic, strong) CLLocation *location;
+
+/* The properties that will be added to a run */
+@property (nonatomic, strong) NSString *maxSpeed;
+@property (nonatomic, strong) NSString *averageSpeed;
+@property (nonatomic, strong) NSString *distance;
+@property (nonatomic, strong) NSString *maxAccel;
+@property (nonatomic, strong) NSString *maxDecel;
+@property (nonatomic, strong) NSString *maxGrade;
+@property (nonatomic, strong) NSString *verticalDrop;
+@property (nonatomic, strong) NSString *time;
 
 @end

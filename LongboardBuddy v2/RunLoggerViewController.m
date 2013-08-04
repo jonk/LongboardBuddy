@@ -17,7 +17,17 @@
 @synthesize stopWatchLabel = _stopWatchLabel;
 @synthesize CLController = _CLController;
 @synthesize startButton = _startButton;
+@synthesize addButton = _addButton;
 @synthesize location = _location;
+
+@synthesize maxSpeed = _maxSpeed;
+@synthesize averageSpeed = _averageSpeed;
+@synthesize distance = _distance;
+@synthesize maxAccel = _maxAccel;
+@synthesize maxDecel = _maxDecel;
+@synthesize maxGrade = _maxGrade;
+@synthesize verticalDrop = _verticalDrop;
+@synthesize time = _time;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -33,6 +43,7 @@
     [super viewDidLoad];
 	running = false;
     startTime = [NSDate timeIntervalSinceReferenceDate];
+    self.addButton.hidden = YES;
     
     CLController = [[LocationController alloc] init];
     CLController.delegate = self;
@@ -45,6 +56,7 @@
 - (IBAction)startPressed:(UIButton *)sender {
     NSTimeInterval currentTime = [NSDate timeIntervalSinceReferenceDate];
     if (!running) {
+        self.addButton.hidden = YES;
         running = YES;
         NSTimeInterval elapsed = currentTime - stoppedTime;
         startTime = elapsed;
@@ -52,6 +64,7 @@
         [CLController.locationManager startUpdatingLocation];
         [self updateTimer];
     } else {
+        self.addButton.hidden = NO;
         [CLController.locationManager stopUpdatingLocation];
         currentTime = [NSDate timeIntervalSinceReferenceDate];
         running = NO;
@@ -82,9 +95,9 @@
     [self performSelector:@selector(updateTimer) withObject:self afterDelay:0.1];
 }
 
-- (IBAction)addSesh:(id)sender {
+- (IBAction)addRun:(id)sender {
     
-    
+
 }
 
 - (void)didReceiveMemoryWarning

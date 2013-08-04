@@ -53,14 +53,32 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9C9-3d-lp6">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="18" id="ZJM-2B-Oy8"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" size="button"/>
+                                <state key="normal" title="ADD RUN">
+                                    <color key="titleColor" red="0.19607843137254902" green="0.30980392156862746" blue="0.52156862745098043" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="addRun:" destination="cnV-Zy-WcO" eventType="touchUpInside" id="6bZ-3d-2Ww"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="vWY-73-zPr" firstAttribute="top" secondItem="0jY-sw-e53" secondAttribute="top" constant="174" id="72z-FG-z3i"/>
                             <constraint firstItem="5lG-QU-uEo" firstAttribute="leading" secondItem="0jY-sw-e53" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="9cr-4s-xak"/>
                             <constraint firstAttribute="trailing" secondItem="vWY-73-zPr" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="GMV-CO-3oe"/>
                             <constraint firstItem="5lG-QU-uEo" firstAttribute="top" secondItem="0jY-sw-e53" secondAttribute="top" constant="20" symbolic="YES" type="default" id="Jgv-vR-yBr"/>
+                            <constraint firstItem="9C9-3d-lp6" firstAttribute="centerX" secondItem="vWY-73-zPr" secondAttribute="centerX" type="default" id="Kb0-9l-sja"/>
+                            <constraint firstItem="vWY-73-zPr" firstAttribute="top" secondItem="0jY-sw-e53" secondAttribute="top" constant="198" id="Mog-3x-6A8"/>
                             <constraint firstAttribute="bottom" secondItem="pPR-7Q-tqJ" secondAttribute="bottom" constant="109" id="Ptn-MQ-ako"/>
+                            <constraint firstItem="9C9-3d-lp6" firstAttribute="top" secondItem="0jY-sw-e53" secondAttribute="top" constant="158" id="Sdq-3E-GVg"/>
                             <constraint firstItem="vWY-73-zPr" firstAttribute="leading" secondItem="0jY-sw-e53" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="UjP-EF-FfT"/>
                             <constraint firstItem="xNO-Dh-To5" firstAttribute="centerX" secondItem="pPR-7Q-tqJ" secondAttribute="centerX" type="default" id="X26-8t-v13"/>
                             <constraint firstAttribute="bottom" secondItem="xNO-Dh-To5" secondAttribute="bottom" constant="71" id="bMQ-qL-0VH"/>
@@ -72,6 +90,7 @@
                     <tabBarItem key="tabBarItem" title="Controls" id="UJw-jL-uDW"/>
                     <navigationItem key="navigationItem" id="zdX-KF-5F5"/>
                     <connections>
+                        <outlet property="addButton" destination="9C9-3d-lp6" id="FQe-t0-VYO"/>
                         <outlet property="locationLabel" destination="xNO-Dh-To5" id="8JA-qp-yra"/>
                         <outlet property="startButton" destination="5lG-QU-uEo" id="js6-XR-GdQ"/>
                         <outlet property="stopWatchLabel" destination="vWY-73-zPr" id="anq-sd-LBJ"/>
@@ -154,8 +173,9 @@
         <class className="RunLoggerViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/RunLoggerViewController.h"/>
             <relationships>
-                <relationship kind="action" name="addSesh:"/>
+                <relationship kind="action" name="addRun:"/>
                 <relationship kind="action" name="startPressed:"/>
+                <relationship kind="outlet" name="addButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="locationLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="startButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="stopWatchLabel" candidateClass="UILabel"/>
