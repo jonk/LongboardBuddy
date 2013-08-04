@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F959979E17AF0CED001F7F5B /* StartPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F959979D17AF0CED001F7F5B /* StartPageViewController.m */; };
 		F96B407D17ADE88D00D6F13E /* ListOfRunsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F96B407C17ADE88D00D6F13E /* ListOfRunsViewController.m */; };
 		F96B408517ADEC4700D6F13E /* Run.m in Sources */ = {isa = PBXBuildFile; fileRef = F96B408417ADEC4700D6F13E /* Run.m */; };
 		F9EE349917ADD823001311CC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9EE349817ADD823001311CC /* UIKit.framework */; };
@@ -28,6 +29,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F959979C17AF0CED001F7F5B /* StartPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartPageViewController.h; sourceTree = "<group>"; };
+		F959979D17AF0CED001F7F5B /* StartPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartPageViewController.m; sourceTree = "<group>"; };
 		F96B407B17ADE88D00D6F13E /* ListOfRunsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListOfRunsViewController.h; sourceTree = "<group>"; };
 		F96B407C17ADE88D00D6F13E /* ListOfRunsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListOfRunsViewController.m; sourceTree = "<group>"; };
 		F96B408317ADEC4700D6F13E /* Run.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Run.h; sourceTree = "<group>"; };
@@ -114,10 +117,12 @@
 				F9EE34C117ADD9BF001311CC /* LocationController.m */,
 				F9EE34B217ADD823001311CC /* LongboardBuddy_v2.xcdatamodeld */,
 				F9EE34C517ADDD1A001311CC /* MainStoryboard.storyboard */,
-				F96B407B17ADE88D00D6F13E /* ListOfRunsViewController.h */,
-				F96B407C17ADE88D00D6F13E /* ListOfRunsViewController.m */,
+				F959979C17AF0CED001F7F5B /* StartPageViewController.h */,
+				F959979D17AF0CED001F7F5B /* StartPageViewController.m */,
 				F9EE34F917ADE163001311CC /* RunLoggerViewController.h */,
 				F9EE34FA17ADE163001311CC /* RunLoggerViewController.m */,
+				F96B407B17ADE88D00D6F13E /* ListOfRunsViewController.h */,
+				F96B407C17ADE88D00D6F13E /* ListOfRunsViewController.m */,
 				F9EE34A117ADD823001311CC /* Supporting Files */,
 			);
 			path = "LongboardBuddy v2";
@@ -210,6 +215,7 @@
 				F9EE34FB17ADE164001311CC /* RunLoggerViewController.m in Sources */,
 				F96B407D17ADE88D00D6F13E /* ListOfRunsViewController.m in Sources */,
 				F96B408517ADEC4700D6F13E /* Run.m in Sources */,
+				F959979E17AF0CED001F7F5B /* StartPageViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
