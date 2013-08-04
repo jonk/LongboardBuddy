@@ -18,6 +18,11 @@
 		F9EE34AF17ADD823001311CC /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F9EE34AE17ADD823001311CC /* Default@2x.png */; };
 		F9EE34B117ADD823001311CC /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F9EE34B017ADD823001311CC /* Default-568h@2x.png */; };
 		F9EE34B417ADD823001311CC /* LongboardBuddy_v2.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F9EE34B217ADD823001311CC /* LongboardBuddy_v2.xcdatamodeld */; };
+		F9EE34BC17ADD937001311CC /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9EE34BA17ADD921001311CC /* CoreLocation.framework */; };
+		F9EE34BF17ADD95D001311CC /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9EE34BD17ADD951001311CC /* QuartzCore.framework */; };
+		F9EE34C217ADD9BF001311CC /* LocationController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9EE34C117ADD9BF001311CC /* LocationController.m */; };
+		F9EE34C617ADDD1A001311CC /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F9EE34C517ADDD1A001311CC /* MainStoryboard.storyboard */; };
+		F9EE34FB17ADE164001311CC /* RunLoggerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9EE34FA17ADE163001311CC /* RunLoggerViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +41,13 @@
 		F9EE34AE17ADD823001311CC /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		F9EE34B017ADD823001311CC /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		F9EE34B317ADD823001311CC /* LongboardBuddy_v2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LongboardBuddy_v2.xcdatamodel; sourceTree = "<group>"; };
+		F9EE34BA17ADD921001311CC /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		F9EE34BD17ADD951001311CC /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		F9EE34C017ADD9BF001311CC /* LocationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationController.h; sourceTree = "<group>"; };
+		F9EE34C117ADD9BF001311CC /* LocationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationController.m; sourceTree = "<group>"; };
+		F9EE34C517ADDD1A001311CC /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
+		F9EE34F917ADE163001311CC /* RunLoggerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RunLoggerViewController.h; sourceTree = "<group>"; };
+		F9EE34FA17ADE163001311CC /* RunLoggerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RunLoggerViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +55,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F9EE34BF17ADD95D001311CC /* QuartzCore.framework in Frameworks */,
+				F9EE34BC17ADD937001311CC /* CoreLocation.framework in Frameworks */,
 				F9EE349917ADD823001311CC /* UIKit.framework in Frameworks */,
 				F9EE349B17ADD823001311CC /* Foundation.framework in Frameworks */,
 				F9EE349D17ADD823001311CC /* CoreGraphics.framework in Frameworks */,
@@ -73,6 +87,8 @@
 		F9EE349717ADD823001311CC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F9EE34BD17ADD951001311CC /* QuartzCore.framework */,
+				F9EE34BA17ADD921001311CC /* CoreLocation.framework */,
 				F9EE349817ADD823001311CC /* UIKit.framework */,
 				F9EE349A17ADD823001311CC /* Foundation.framework */,
 				F9EE349C17ADD823001311CC /* CoreGraphics.framework */,
@@ -86,7 +102,12 @@
 			children = (
 				F9EE34A917ADD823001311CC /* AppDelegate.h */,
 				F9EE34AA17ADD823001311CC /* AppDelegate.m */,
+				F9EE34C017ADD9BF001311CC /* LocationController.h */,
+				F9EE34C117ADD9BF001311CC /* LocationController.m */,
 				F9EE34B217ADD823001311CC /* LongboardBuddy_v2.xcdatamodeld */,
+				F9EE34C517ADDD1A001311CC /* MainStoryboard.storyboard */,
+				F9EE34F917ADE163001311CC /* RunLoggerViewController.h */,
+				F9EE34FA17ADE163001311CC /* RunLoggerViewController.m */,
 				F9EE34A117ADD823001311CC /* Supporting Files */,
 			);
 			path = "LongboardBuddy v2";
@@ -161,6 +182,7 @@
 				F9EE34AD17ADD823001311CC /* Default.png in Resources */,
 				F9EE34AF17ADD823001311CC /* Default@2x.png in Resources */,
 				F9EE34B117ADD823001311CC /* Default-568h@2x.png in Resources */,
+				F9EE34C617ADDD1A001311CC /* MainStoryboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -174,6 +196,8 @@
 				F9EE34A717ADD823001311CC /* main.m in Sources */,
 				F9EE34AB17ADD823001311CC /* AppDelegate.m in Sources */,
 				F9EE34B417ADD823001311CC /* LongboardBuddy_v2.xcdatamodeld in Sources */,
+				F9EE34C217ADD9BF001311CC /* LocationController.m in Sources */,
+				F9EE34FB17ADE164001311CC /* RunLoggerViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
