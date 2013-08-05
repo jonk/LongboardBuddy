@@ -49,7 +49,10 @@
     CLController.delegate = self;
     
     maxSpeed = 0.0;
-    locationLabel.text = @"0.0 MPH";
+    distance = 0.0;
+    startingLocation = [CLController.locationManager location];
+    locationLabel.text = @"0.0 mph";
+    distanceLabel.text = @"0.0 mi";
 }
 
 /** Is executed when the start/pause button is pressed.*/
@@ -113,10 +116,15 @@
 - (void)locationUpdate:(CLLocation *)location {
     double currentSpeed = [location speed];
     self.location = location;
+    distance = [location distanceFromLocation:startingLocation];
     if (currentSpeed > maxSpeed) {
         maxSpeed = currentSpeed;
     }
-    locationLabel.text = [NSString stringWithFormat:@"%0.2F MPH", maxSpeed * 2.24];
+    self.maxSpeed = [NSString stringWithFormat:@"%f", maxSpeed];
+    self.distance = [NSString stringWithFormat:@"%f", distance];
+    locationLabel.text = [NSString stringWithFormat:@"%0.2F mph", maxSpeed * 2.24];
+    distanceLabel.text = [NSString stringWithFormat:@"%0.2f mi", distance * 0.00062137];
 }
+
 
 @end

@@ -36,18 +36,28 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="0.00 MPH" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xNO-Dh-To5">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="0.00 mph" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xNO-Dh-To5">
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="yJu-9M-vTI"/>
+                                    <constraint firstAttribute="height" constant="31" id="aZi-sJ-KAh"/>
+                                    <constraint firstAttribute="width" constant="190" id="yFp-ds-3w2"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Max Speed" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pPR-7Q-tqJ">
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="25" id="4pY-KB-oMg"/>
-                                    <constraint firstAttribute="width" constant="130" id="lXi-2u-SHA"/>
+                                    <constraint firstAttribute="width" constant="104" id="3tW-GD-tA8"/>
+                                    <constraint firstAttribute="height" constant="26" id="dom-Tk-faE"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Distance" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ncv-y9-ObD">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="130" id="nNy-Jb-XcC"/>
+                                    <constraint firstAttribute="height" constant="25" id="wTU-bb-rST"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -69,21 +79,39 @@
                                     <action selector="addRun:" destination="cnV-Zy-WcO" eventType="touchUpInside" id="6bZ-3d-2Ww"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mBI-tB-Itu">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="0.0 mi" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LbE-ps-EKF">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="158" id="gfh-1v-RsM"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="pPR-7Q-tqJ" secondAttribute="trailing" constant="39" id="8zH-E1-XRh"/>
                             <constraint firstItem="5lG-QU-uEo" firstAttribute="leading" secondItem="0jY-sw-e53" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="9cr-4s-xak"/>
                             <constraint firstAttribute="trailing" secondItem="vWY-73-zPr" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="GMV-CO-3oe"/>
+                            <constraint firstItem="pPR-7Q-tqJ" firstAttribute="top" secondItem="Ncv-y9-ObD" secondAttribute="top" type="default" id="Hq3-HV-jDv"/>
+                            <constraint firstAttribute="bottom" secondItem="pPR-7Q-tqJ" secondAttribute="bottom" constant="84" id="JZk-Qw-mhJ"/>
                             <constraint firstItem="5lG-QU-uEo" firstAttribute="top" secondItem="0jY-sw-e53" secondAttribute="top" constant="20" symbolic="YES" type="default" id="Jgv-vR-yBr"/>
                             <constraint firstItem="9C9-3d-lp6" firstAttribute="centerX" secondItem="vWY-73-zPr" secondAttribute="centerX" type="default" id="Kb0-9l-sja"/>
                             <constraint firstItem="vWY-73-zPr" firstAttribute="top" secondItem="0jY-sw-e53" secondAttribute="top" constant="198" id="Mog-3x-6A8"/>
-                            <constraint firstAttribute="bottom" secondItem="pPR-7Q-tqJ" secondAttribute="bottom" constant="109" id="Ptn-MQ-ako"/>
                             <constraint firstItem="9C9-3d-lp6" firstAttribute="top" secondItem="0jY-sw-e53" secondAttribute="top" constant="158" id="Sdq-3E-GVg"/>
                             <constraint firstItem="vWY-73-zPr" firstAttribute="leading" secondItem="0jY-sw-e53" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="UjP-EF-FfT"/>
-                            <constraint firstItem="xNO-Dh-To5" firstAttribute="centerX" secondItem="pPR-7Q-tqJ" secondAttribute="centerX" type="default" id="X26-8t-v13"/>
-                            <constraint firstAttribute="bottom" secondItem="xNO-Dh-To5" secondAttribute="bottom" constant="71" id="bMQ-qL-0VH"/>
-                            <constraint firstAttribute="trailing" secondItem="xNO-Dh-To5" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="lOh-c9-fSq"/>
-                            <constraint firstItem="xNO-Dh-To5" firstAttribute="leading" secondItem="0jY-sw-e53" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="q14-RF-Ng3"/>
+                            <constraint firstItem="LbE-ps-EKF" firstAttribute="leading" secondItem="0jY-sw-e53" secondAttribute="leading" constant="28" id="ddi-sN-VDk"/>
+                            <constraint firstItem="xNO-Dh-To5" firstAttribute="trailing" secondItem="0jY-sw-e53" secondAttribute="trailing" type="default" id="e2Z-SH-wAO"/>
+                            <constraint firstAttribute="bottom" secondItem="mBI-tB-Itu" secondAttribute="bottom" constant="153" id="iiQ-pq-6Xh"/>
+                            <constraint firstItem="Ncv-y9-ObD" firstAttribute="leading" secondItem="0jY-sw-e53" secondAttribute="leading" type="default" id="kEO-Yi-RKe"/>
+                            <constraint firstAttribute="bottom" secondItem="xNO-Dh-To5" secondAttribute="bottom" constant="58" id="m1c-wR-tc7"/>
+                            <constraint firstAttribute="bottom" secondItem="LbE-ps-EKF" secondAttribute="bottom" constant="64" id="pVp-Bi-8ra"/>
+                            <constraint firstAttribute="trailing" secondItem="mBI-tB-Itu" secondAttribute="trailing" constant="53" id="uJQ-1h-NsM"/>
                             <constraint firstAttribute="trailing" secondItem="5lG-QU-uEo" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="xYU-bI-koh"/>
                         </constraints>
                     </view>
@@ -91,6 +119,7 @@
                     <navigationItem key="navigationItem" id="zdX-KF-5F5"/>
                     <connections>
                         <outlet property="addButton" destination="9C9-3d-lp6" id="FQe-t0-VYO"/>
+                        <outlet property="distanceLabel" destination="LbE-ps-EKF" id="lvC-cy-vlZ"/>
                         <outlet property="locationLabel" destination="xNO-Dh-To5" id="8JA-qp-yra"/>
                         <outlet property="startButton" destination="5lG-QU-uEo" id="js6-XR-GdQ"/>
                         <outlet property="stopWatchLabel" destination="vWY-73-zPr" id="anq-sd-LBJ"/>
@@ -160,7 +189,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZJo-NT-82N" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="35" y="134"/>
+            <point key="canvasLocation" x="64" y="117"/>
         </scene>
     </scenes>
     <classes>
@@ -176,6 +205,7 @@
                 <relationship kind="action" name="addRun:"/>
                 <relationship kind="action" name="startPressed:"/>
                 <relationship kind="outlet" name="addButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="distanceLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="locationLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="startButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="stopWatchLabel" candidateClass="UILabel"/>
