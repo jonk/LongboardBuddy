@@ -21,6 +21,7 @@
     NSTimeInterval stoppedTime;
     double maxSpeed;
     double distance;
+    double oldDistance;
     CLLocation *startingLocation;
     
 }

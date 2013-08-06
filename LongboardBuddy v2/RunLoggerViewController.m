@@ -50,7 +50,9 @@
     
     maxSpeed = 0.0;
     distance = 0.0;
-    startingLocation = [CLController.locationManager location];
+    oldDistance = 0.0;
+    distance = 0.0;
+    //startingLocation = [CLController.locationManager location];
     locationLabel.text = @"0.0 mph";
     distanceLabel.text = @"0.0 mi";
 }
@@ -64,10 +66,12 @@
         NSTimeInterval elapsed = currentTime - stoppedTime;
         startTime = elapsed;
         [sender setTitle:@"PAUSE" forState:UIControlStateNormal];
+        startingLocation = [CLController.locationManager location];
         [CLController.locationManager startUpdatingLocation];
         [self updateTimer];
     } else {
         self.addButton.hidden = NO;
+        oldDistance = distance;
         [CLController.locationManager stopUpdatingLocation];
         currentTime = [NSDate timeIntervalSinceReferenceDate];
         running = NO;
@@ -116,12 +120,12 @@
 - (void)locationUpdate:(CLLocation *)location {
     double currentSpeed = [location speed];
     self.location = location;
-    distance = [location distanceFromLocation:startingLocation];
+    distance = oldDistance + [location distanceFromLocation:startingLocation];
     if (currentSpeed > maxSpeed) {
         maxSpeed = currentSpeed;
     }
-    self.maxSpeed = [NSString stringWithFormat:@"%f", maxSpeed];
-    self.distance = [NSString stringWithFormat:@"%f", distance];
+    self.maxSpeed = [NSString stringWithFormat:@"%f", maxSpeed * 2.24];
+    self.distance = [NSString stringWithFormat:@"%f", distance * 0.00062137];
     locationLabel.text = [NSString stringWithFormat:@"%0.2F mph", maxSpeed * 2.24];
     distanceLabel.text = [NSString stringWithFormat:@"%0.2f mi", distance * 0.00062137];
 }
