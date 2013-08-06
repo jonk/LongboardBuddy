@@ -52,9 +52,8 @@
     distance = 0.0;
     oldDistance = 0.0;
     distance = 0.0;
-    //startingLocation = [CLController.locationManager location];
-    locationLabel.text = @"0.0 mph";
-    distanceLabel.text = @"0.0 mi";
+    locationLabel.text = @"0.00 mph";
+    distanceLabel.text = @"0.00 mi";
 }
 
 /** Is executed when the start/pause button is pressed.*/
@@ -124,8 +123,11 @@
     if (currentSpeed > maxSpeed) {
         maxSpeed = currentSpeed;
     }
+    avgSpeed = (avgSpeed + currentSpeed) / 2;
+    self.averageSpeed = [NSString stringWithFormat:@"%f", avgSpeed * 2.24];
     self.maxSpeed = [NSString stringWithFormat:@"%f", maxSpeed * 2.24];
     self.distance = [NSString stringWithFormat:@"%f", distance * 0.00062137];
+    avgSpeedLabel.text = [NSString stringWithFormat:@"%0.2F mph", avgSpeed * 2.24];
     locationLabel.text = [NSString stringWithFormat:@"%0.2F mph", maxSpeed * 2.24];
     distanceLabel.text = [NSString stringWithFormat:@"%0.2f mi", distance * 0.00062137];
 }

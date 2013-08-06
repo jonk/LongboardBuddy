@@ -15,12 +15,14 @@
     LocationController *CLController;
     IBOutlet UILabel *locationLabel;
     IBOutlet UILabel *distanceLabel;
+    IBOutlet UILabel *avgSpeedLabel;
     
     bool running;
     NSTimeInterval startTime;
     NSTimeInterval stoppedTime;
     double maxSpeed;
     double distance;
+    double avgSpeed;
     double oldDistance;
     CLLocation *startingLocation;
     
