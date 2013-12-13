@@ -24,6 +24,8 @@
     double distance;
     double avgSpeed;
     double oldDistance;
+    double verticalDrop;
+    double startingHeight;
     CLLocation *startingLocation;
     
 }
