@@ -33,10 +33,6 @@
 - (IBAction)startPressed:(UIButton *)sender {
     NSTimeInterval currentTime = [NSDate timeIntervalSinceReferenceDate];
     
-    if (!_startLocation) {
-        _startLocation = [self.CLController.locationManager location];
-    }
-    
     if (!running) {
         self.addButton.hidden = YES;
         running = YES;
@@ -60,16 +56,12 @@
     running = NO;
     self.addButton.hidden = YES;
     maxSpeed = 0.0;
-    distance = 0.0;
-    distance = 0.0;
     avgSpeed = 0.0;
     self.stopWatchLabel.text = @"0:00:00.0";
     self.maxSpeedString = @"";
     self.averageSpeedString = @"";
-    self.distanceString = @"";
     self.timeString = @"";
     maxSpeedLabel.text = @"0.00 mph";
-    distanceLabel.text = @"0.00 mi";
     avgSpeedLabel.text = @"0.00 mph";
     
 }
@@ -100,39 +92,31 @@
 
 - (IBAction)addRun:(id)sender {
     
-    Run *newRun = [[Run alloc] init];
-    
-    [newRun addRunWithMaxSpeed:self.maxSpeedString averageSpeed:self.averageSpeedString distance:self.distanceString time:self.timeString];
-    
-    
-    
 }
 
 - (void)locationError:(NSError *)error {
     NSLog(@"We got an Error");
 }
 
-- (void)locationUpdate:(CLLocation *)location {
-    double currentSpeed = 0.0;
-    if ([location speed] >= 0.0) {
-        currentSpeed = [location speed];
+- (double)getCurrentSpeedWithLocation:(CLLocation *)location {
+    double speed = [location speed] * 2.24;
+    if (speed <= 0) {
+        return 0.0;
     }
-    
-    distance = [location distanceFromLocation:self.startLocation];
-    
+    return speed;
+}
+
+- (void)locationUpdate:(CLLocation *)location {
+    double currentSpeed = [self getCurrentSpeedWithLocation:location];
     if (currentSpeed > maxSpeed) {
         maxSpeed = currentSpeed;
     }
     avgSpeed = (avgSpeed + currentSpeed) / 2;
-    self.averageSpeedString = [NSString stringWithFormat:@"%f", avgSpeed * 2.24];
-    self.maxSpeedString = [NSString stringWithFormat:@"%f", maxSpeed * 2.24];
-    self.distanceString = [NSString stringWithFormat:@"%f", distance * 0.00062137];
-    avgSpeedLabel.text = [NSString stringWithFormat:@"%0.2F mph", avgSpeed * 2.24];
-    maxSpeedLabel.text = [NSString stringWithFormat:@"%0.2F mph", maxSpeed * 2.24];
-    distanceLabel.text = [NSString stringWithFormat:@"%0.2f mi", distance * 0.00062137];
-    NSLog(@"%f", distance);
-    NSLog(@"%f", maxSpeed);
-    NSLog(@"%f", avgSpeed);
+    self.averageSpeedString = [NSString stringWithFormat:@"%f", avgSpeed];
+    self.maxSpeedString = [NSString stringWithFormat:@"%f", maxSpeed];
+    avgSpeedLabel.text = [NSString stringWithFormat:@"%0.2F mph", avgSpeed];
+    maxSpeedLabel.text = [NSString stringWithFormat:@"%0.2F mph", maxSpeed];
+    curSpeedLabel.text = [NSString stringWithFormat:@"%0.2F mph", currentSpeed];
 }
 
 
