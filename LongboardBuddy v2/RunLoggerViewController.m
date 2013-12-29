@@ -9,35 +9,13 @@
 #import "RunLoggerViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "Run.h"
+#import "ListOfRunsViewController.h"
 
 @interface RunLoggerViewController ()
 
 @end
 
 @implementation RunLoggerViewController
-@synthesize stopWatchLabel = _stopWatchLabel;
-@synthesize CLController = _CLController;
-@synthesize startButton = _startButton;
-@synthesize addButton = _addButton;
-@synthesize location = _location;
-
-@synthesize maxSpeed = _maxSpeed;
-@synthesize averageSpeed = _averageSpeed;
-@synthesize distance = _distance;
-@synthesize maxAccel = _maxAccel;
-@synthesize maxDecel = _maxDecel;
-@synthesize maxGrade = _maxGrade;
-@synthesize verticalDrop = _verticalDrop;
-@synthesize time = _time;
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
 
 - (void)viewDidLoad
 {
@@ -46,8 +24,8 @@
     startTime = [NSDate timeIntervalSinceReferenceDate];
     self.addButton.hidden = YES;
     
-    CLController = [[LocationController alloc] init];
-    CLController.delegate = self;
+    _CLController = [[LocationController alloc] init];
+    self.CLController.delegate = self;
 
 }
 
@@ -55,19 +33,21 @@
 - (IBAction)startPressed:(UIButton *)sender {
     NSTimeInterval currentTime = [NSDate timeIntervalSinceReferenceDate];
     
+    if (!_startLocation) {
+        _startLocation = [self.CLController.locationManager location];
+    }
+    
     if (!running) {
         self.addButton.hidden = YES;
         running = YES;
         NSTimeInterval elapsed = currentTime - stoppedTime;
         startTime = elapsed;
         [sender setTitle:@"PAUSE" forState:UIControlStateNormal];
-        startingLocation = [CLController.locationManager location];
-        [CLController.locationManager startUpdatingLocation];
+        [self.CLController.locationManager startUpdatingLocation];
         [self updateTimer];
     } else {
         self.addButton.hidden = NO;
-        oldDistance = distance;
-        [CLController.locationManager stopUpdatingLocation];
+        [self.CLController.locationManager stopUpdatingLocation];
         currentTime = [NSDate timeIntervalSinceReferenceDate];
         running = NO;
         [sender setTitle:@"START" forState:UIControlStateNormal];
@@ -81,21 +61,14 @@
     self.addButton.hidden = YES;
     maxSpeed = 0.0;
     distance = 0.0;
-    oldDistance = 0.0;
     distance = 0.0;
     avgSpeed = 0.0;
-    verticalDrop = 0.0;
-    startingHeight = 0.0;
     self.stopWatchLabel.text = @"0:00:00.0";
-    self.maxSpeed = @"";
-    self.averageSpeed = @"";
-    self.distance = @"";
-    self.time = @"";
-    self.verticalDrop = @"";
-    self.maxAccel = @"";
-    self.maxDecel = @"";
-    self.maxGrade = @"";
-    locationLabel.text = @"0.00 mph";
+    self.maxSpeedString = @"";
+    self.averageSpeedString = @"";
+    self.distanceString = @"";
+    self.timeString = @"";
+    maxSpeedLabel.text = @"0.00 mph";
     distanceLabel.text = @"0.00 mi";
     avgSpeedLabel.text = @"0.00 mph";
     
@@ -121,7 +94,7 @@
     
     _stopWatchLabel.text = [NSString
                             stringWithFormat:@"%u:%02u:%02u.%u", hours, mins, secs, fraction];
-    self.time = _stopWatchLabel.text;
+    self.timeString = _stopWatchLabel.text;
     [self performSelector:@selector(updateTimer) withObject:self afterDelay:0.1];
 }
 
@@ -129,40 +102,37 @@
     
     Run *newRun = [[Run alloc] init];
     
-    [newRun addRunWithMaxSpeed:self.maxSpeed averageSpeed:self.averageSpeed distance:self.distance maxAccel:self.maxAccel maxDecel:self.maxDecel maxGrade:self.maxGrade verticalDrop:self.verticalDrop time:self.time];
+    [newRun addRunWithMaxSpeed:self.maxSpeedString averageSpeed:self.averageSpeedString distance:self.distanceString time:self.timeString];
     
     
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    
 }
 
 - (void)locationError:(NSError *)error {
-    //do nothing.
+    NSLog(@"We got an Error");
 }
 
 - (void)locationUpdate:(CLLocation *)location {
     double currentSpeed = 0.0;
-    if ([location speed] >= 0) {
+    if ([location speed] >= 0.0) {
         currentSpeed = [location speed];
     }
-    self.location = location;
-    distance = oldDistance + [location distanceFromLocation:startingLocation];
+    
+    distance = [location distanceFromLocation:self.startLocation];
+    
     if (currentSpeed > maxSpeed) {
         maxSpeed = currentSpeed;
     }
     avgSpeed = (avgSpeed + currentSpeed) / 2;
-    verticalDrop = [location altitude];
-    self.averageSpeed = [NSString stringWithFormat:@"%f", avgSpeed * 2.24];
-    self.maxSpeed = [NSString stringWithFormat:@"%f", maxSpeed * 2.24];
-    self.distance = [NSString stringWithFormat:@"%f", distance * 0.00062137];
-    self.verticalDrop = [NSString stringWithFormat:@"%f", verticalDrop * 3.28];
+    self.averageSpeedString = [NSString stringWithFormat:@"%f", avgSpeed * 2.24];
+    self.maxSpeedString = [NSString stringWithFormat:@"%f", maxSpeed * 2.24];
+    self.distanceString = [NSString stringWithFormat:@"%f", distance * 0.00062137];
     avgSpeedLabel.text = [NSString stringWithFormat:@"%0.2F mph", avgSpeed * 2.24];
-    locationLabel.text = [NSString stringWithFormat:@"%0.2F mph", maxSpeed * 2.24];
+    maxSpeedLabel.text = [NSString stringWithFormat:@"%0.2F mph", maxSpeed * 2.24];
     distanceLabel.text = [NSString stringWithFormat:@"%0.2f mi", distance * 0.00062137];
+    NSLog(@"%f", distance);
+    NSLog(@"%f", maxSpeed);
+    NSLog(@"%f", avgSpeed);
 }
 
 

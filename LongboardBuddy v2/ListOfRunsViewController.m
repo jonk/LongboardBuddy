@@ -13,6 +13,7 @@
 @end
 
 @implementation ListOfRunsViewController
+@synthesize listOfRuns = _listOfRuns;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {

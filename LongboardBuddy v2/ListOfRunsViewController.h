@@ -10,4 +10,6 @@
 
 @interface ListOfRunsViewController : UITableViewController
 
+@property (nonatomic, strong) NSMutableArray *listOfRuns;
+
 @end
