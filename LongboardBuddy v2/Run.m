@@ -8,16 +8,17 @@
 
 #import "Run.h"
 
+@interface Run()
+@end
+
 @implementation Run
 
 - (void)addRunWithMaxSpeed:(NSString *)maxSpeed
               averageSpeed:(NSString *)averageSpeed
-                  distance:(NSString *)distance
                       time:(NSString *)time {
     
     self.maxSpeed = maxSpeed;
     self.averageSpeed = averageSpeed;
-    self.distance = distance;
     self.time = time;
     
 }

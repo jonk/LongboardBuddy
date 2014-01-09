@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		F96B407D17ADE88D00D6F13E /* ListOfRunsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F96B407C17ADE88D00D6F13E /* ListOfRunsViewController.m */; };
 		F96B408517ADEC4700D6F13E /* Run.m in Sources */ = {isa = PBXBuildFile; fileRef = F96B408417ADEC4700D6F13E /* Run.m */; };
+		F9AF8518187F63F100390F29 /* TimerWithPause.m in Sources */ = {isa = PBXBuildFile; fileRef = F9AF8517187F63F100390F29 /* TimerWithPause.m */; };
 		F9EE349917ADD823001311CC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9EE349817ADD823001311CC /* UIKit.framework */; };
 		F9EE349B17ADD823001311CC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9EE349A17ADD823001311CC /* Foundation.framework */; };
 		F9EE349D17ADD823001311CC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9EE349C17ADD823001311CC /* CoreGraphics.framework */; };
@@ -32,6 +33,8 @@
 		F96B407C17ADE88D00D6F13E /* ListOfRunsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListOfRunsViewController.m; sourceTree = "<group>"; };
 		F96B408317ADEC4700D6F13E /* Run.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Run.h; sourceTree = "<group>"; };
 		F96B408417ADEC4700D6F13E /* Run.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Run.m; sourceTree = "<group>"; };
+		F9AF8516187F63F100390F29 /* TimerWithPause.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimerWithPause.h; sourceTree = "<group>"; };
+		F9AF8517187F63F100390F29 /* TimerWithPause.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimerWithPause.m; sourceTree = "<group>"; };
 		F9EE349417ADD823001311CC /* LongboardBuddy v2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "LongboardBuddy v2.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9EE349817ADD823001311CC /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		F9EE349A17ADD823001311CC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -73,6 +76,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F9AF8519187F640700390F29 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				F9EE34B217ADD823001311CC /* LongboardBuddy_v2.xcdatamodeld */,
+				F9EE34C017ADD9BF001311CC /* LocationController.h */,
+				F9EE34C117ADD9BF001311CC /* LocationController.m */,
+				F96B408317ADEC4700D6F13E /* Run.h */,
+				F96B408417ADEC4700D6F13E /* Run.m */,
+				F9AF8516187F63F100390F29 /* TimerWithPause.h */,
+				F9AF8517187F63F100390F29 /* TimerWithPause.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		F9EE348917ADD822001311CC = {
 			isa = PBXGroup;
 			children = (
@@ -106,18 +123,12 @@
 		F9EE34A017ADD823001311CC /* LongboardBuddy v2 */ = {
 			isa = PBXGroup;
 			children = (
-				F9EE34A917ADD823001311CC /* AppDelegate.h */,
-				F9EE34AA17ADD823001311CC /* AppDelegate.m */,
-				F96B408317ADEC4700D6F13E /* Run.h */,
-				F96B408417ADEC4700D6F13E /* Run.m */,
-				F9EE34C017ADD9BF001311CC /* LocationController.h */,
-				F9EE34C117ADD9BF001311CC /* LocationController.m */,
-				F9EE34B217ADD823001311CC /* LongboardBuddy_v2.xcdatamodeld */,
 				F9EE34C517ADDD1A001311CC /* MainStoryboard.storyboard */,
 				F9EE34F917ADE163001311CC /* RunLoggerViewController.h */,
 				F9EE34FA17ADE163001311CC /* RunLoggerViewController.m */,
 				F96B407B17ADE88D00D6F13E /* ListOfRunsViewController.h */,
 				F96B407C17ADE88D00D6F13E /* ListOfRunsViewController.m */,
+				F9AF8519187F640700390F29 /* Model */,
 				F9EE34A117ADD823001311CC /* Supporting Files */,
 			);
 			path = "LongboardBuddy v2";
@@ -126,6 +137,8 @@
 		F9EE34A117ADD823001311CC /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				F9EE34A917ADD823001311CC /* AppDelegate.h */,
+				F9EE34AA17ADD823001311CC /* AppDelegate.m */,
 				F9EE34A217ADD823001311CC /* LongboardBuddy v2-Info.plist */,
 				F9EE34A317ADD823001311CC /* InfoPlist.strings */,
 				F9EE34A617ADD823001311CC /* main.m */,
@@ -218,6 +231,7 @@
 				F9EE34C217ADD9BF001311CC /* LocationController.m in Sources */,
 				F9EE34FB17ADE164001311CC /* RunLoggerViewController.m in Sources */,
 				F96B407D17ADE88D00D6F13E /* ListOfRunsViewController.m in Sources */,
+				F9AF8518187F63F100390F29 /* TimerWithPause.m in Sources */,
 				F96B408517ADEC4700D6F13E /* Run.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

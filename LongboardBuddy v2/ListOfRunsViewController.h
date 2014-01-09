@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Run.h"
 
 @interface ListOfRunsViewController : UITableViewController
 
-@property (nonatomic, strong) NSMutableArray *listOfRuns;
 
 @end

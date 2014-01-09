@@ -9,27 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "LocationController.h"
 
-@interface RunLoggerViewController : UIViewController
-<CoreLocationControllerDelegate> {
-    
-    IBOutlet UILabel *maxSpeedLabel;
-    IBOutlet UILabel *curSpeedLabel;
-    IBOutlet UILabel *avgSpeedLabel;
-    
-    BOOL running;
-    NSTimeInterval startTime;
-    NSTimeInterval stoppedTime;
-    double maxSpeed;
-    double avgSpeed;
-}
+@interface RunLoggerViewController : UIViewController <CoreLocationControllerDelegate>
 
 - (IBAction)startPressed:(id)sender;
 - (IBAction)addRun:(id)sender;
 
-@property (strong, nonatomic) IBOutlet UILabel *stopWatchLabel;
-@property (strong, nonatomic) IBOutlet UIButton *startButton;
-@property (strong, nonatomic) IBOutlet UIButton *addButton;
-@property (nonatomic, strong) LocationController *CLController;
+/* The location controller */
+@property (nonatomic, strong) LocationController *clController;
 
 /* The properties that will be added to a run */
 @property (nonatomic, strong) NSString *maxSpeedString;

@@ -8,10 +8,23 @@
 
 #import "RunLoggerViewController.h"
 #import <QuartzCore/QuartzCore.h>
-#import "Run.h"
 #import "ListOfRunsViewController.h"
+#import "TimerWithPause.h"
 
 @interface RunLoggerViewController ()
+
+@property (weak, nonatomic) IBOutlet UILabel *stopWatchLabel;
+@property (weak, nonatomic) IBOutlet UIButton *startButton;
+@property (weak, nonatomic) IBOutlet UIButton *addButton;
+@property (weak, nonatomic) IBOutlet UILabel *maxSpeedLabel;
+@property (weak, nonatomic) IBOutlet UILabel *curSpeedLabel;
+@property (weak, nonatomic) IBOutlet UILabel *avgSpeedLabel;
+@property (nonatomic, strong) TimerWithPause *timer;
+@property (nonatomic) BOOL running;
+@property (nonatomic) NSTimeInterval startTime;
+@property (nonatomic) NSTimeInterval stoppedTime;
+@property (nonatomic) double maxSpeed;
+@property (nonatomic) double avgSpeed;
 
 @end
 
@@ -20,61 +33,52 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	running = NO;
-    startTime = [NSDate timeIntervalSinceReferenceDate];
+	self.running = NO;
+    self.startTime = [NSDate timeIntervalSinceReferenceDate];
     self.addButton.hidden = YES;
-    
-    _CLController = [[LocationController alloc] init];
-    self.CLController.delegate = self;
+}
 
+- (LocationController *)clController
+{
+    if (!_clController) {
+        _clController = [[LocationController alloc] init];
+        _clController.delegate = self;
+    }
+    return _clController;
 }
 
 /** Is executed when the start/pause button is pressed.*/
-- (IBAction)startPressed:(UIButton *)sender {
+- (IBAction)startPressed:(UIButton *)sender
+{
     NSTimeInterval currentTime = [NSDate timeIntervalSinceReferenceDate];
     
-    if (!running) {
+    if (!self.running) {
         self.addButton.hidden = YES;
-        running = YES;
-        NSTimeInterval elapsed = currentTime - stoppedTime;
-        startTime = elapsed;
+        self.running = YES;
+        NSTimeInterval elapsed = currentTime - self.stoppedTime;
+        self.startTime = elapsed;
         [sender setTitle:@"PAUSE" forState:UIControlStateNormal];
-        [self.CLController.locationManager startUpdatingLocation];
+        [self.clController.locationManager startUpdatingLocation];
         [self updateTimer];
     } else {
         self.addButton.hidden = NO;
-        [self.CLController.locationManager stopUpdatingLocation];
+        [self.clController.locationManager stopUpdatingLocation];
         currentTime = [NSDate timeIntervalSinceReferenceDate];
-        running = NO;
+        self.running = NO;
         [sender setTitle:@"START" forState:UIControlStateNormal];
     }
 }
 
-/** Resets the view for whatever reason */
-- (void)reset {
-    
-    running = NO;
-    self.addButton.hidden = YES;
-    maxSpeed = 0.0;
-    avgSpeed = 0.0;
-    self.stopWatchLabel.text = @"0:00:00.0";
-    self.maxSpeedString = @"";
-    self.averageSpeedString = @"";
-    self.timeString = @"";
-    maxSpeedLabel.text = @"0.00 mph";
-    avgSpeedLabel.text = @"0.00 mph";
-    
-}
-
 /** Performs some simple math to update the timer when it is running using
  *  NS Date. */
-- (void)updateTimer {
+- (void)updateTimer
+{
     
-    if (!running) return;
+    if (!self.running) return;
     
     NSTimeInterval currentTime = [NSDate timeIntervalSinceReferenceDate];
-    NSTimeInterval elapsed = currentTime - startTime;
-    stoppedTime = elapsed;
+    NSTimeInterval elapsed = currentTime - self.startTime;
+    self.stoppedTime = elapsed;
     
     int hours = (int) (elapsed / 3600.0);
     elapsed -= hours * 3600.0;
@@ -84,21 +88,19 @@
     elapsed -= secs;
     int fraction = elapsed * 10.0;
     
-    _stopWatchLabel.text = [NSString
+    self.stopWatchLabel.text = [NSString
                             stringWithFormat:@"%u:%02u:%02u.%u", hours, mins, secs, fraction];
-    self.timeString = _stopWatchLabel.text;
+    self.timeString = self.stopWatchLabel.text;
     [self performSelector:@selector(updateTimer) withObject:self afterDelay:0.1];
 }
 
-- (IBAction)addRun:(id)sender {
-    
-}
-
-- (void)locationError:(NSError *)error {
+- (void)locationError:(NSError *)error
+{
     NSLog(@"We got an Error");
 }
 
-- (double)getCurrentSpeedWithLocation:(CLLocation *)location {
+- (double)getCurrentSpeedWithLocation:(CLLocation *)location
+{
     double speed = [location speed] * 2.24;
     if (speed <= 0) {
         return 0.0;
@@ -106,17 +108,18 @@
     return speed;
 }
 
-- (void)locationUpdate:(CLLocation *)location {
+- (void)locationUpdate:(CLLocation *)location
+{
     double currentSpeed = [self getCurrentSpeedWithLocation:location];
-    if (currentSpeed > maxSpeed) {
-        maxSpeed = currentSpeed;
+    if (currentSpeed > self.maxSpeed) {
+        self.maxSpeed = currentSpeed;
     }
-    avgSpeed = (avgSpeed + currentSpeed) / 2;
-    self.averageSpeedString = [NSString stringWithFormat:@"%f", avgSpeed];
-    self.maxSpeedString = [NSString stringWithFormat:@"%f", maxSpeed];
-    avgSpeedLabel.text = [NSString stringWithFormat:@"%0.2F mph", avgSpeed];
-    maxSpeedLabel.text = [NSString stringWithFormat:@"%0.2F mph", maxSpeed];
-    curSpeedLabel.text = [NSString stringWithFormat:@"%0.2F mph", currentSpeed];
+    self.avgSpeed = (self.avgSpeed + currentSpeed) / 2;
+    self.averageSpeedString = [NSString stringWithFormat:@"%f", self.avgSpeed];
+    self.maxSpeedString = [NSString stringWithFormat:@"%f", self.maxSpeed];
+    self.avgSpeedLabel.text = [NSString stringWithFormat:@"%0.2F mph", self.avgSpeed];
+    self.maxSpeedLabel.text = [NSString stringWithFormat:@"%0.2F mph", self.maxSpeed];
+    self.curSpeedLabel.text = [NSString stringWithFormat:@"%0.2F mph", currentSpeed];
 }
 
 
