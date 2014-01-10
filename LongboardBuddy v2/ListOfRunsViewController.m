@@ -12,22 +12,51 @@
 
 @interface ListOfRunsViewController ()
 
+@property (nonatomic, strong) RunLoggerViewController *loggerVC;
+
 @end
 
 @implementation ListOfRunsViewController
+
+- (RunLoggerViewController *)loggerVC
+{
+    if (!_loggerVC) {
+        if ([[self.tabBarController.viewControllers objectAtIndex:0] isKindOfClass:[RunLoggerViewController class]]) {
+            NSLog(@"It's the right view controller");
+            RunLoggerViewController *runLoggerVC = (RunLoggerViewController *)[self.tabBarController.viewControllers objectAtIndex:0];
+            _loggerVC = runLoggerVC;
+        }
+    }
+    return _loggerVC;
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    if ([[self.tabBarController.viewControllers objectAtIndex:0] isKindOfClass:[RunLoggerViewController class]]) {
+        NSLog(@"It's the right view controller");
+        self.loggerVC = (RunLoggerViewController *)[self.tabBarController.viewControllers objectAtIndex:0];
+    }
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.tableView reloadData];
+}
 
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    return 1;
+    return 0;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return [self.dataSource numberofRuns];
+    return self.loggerVC.numberOfRuns;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -35,8 +64,8 @@
     static NSString *CellIdentifier = @"Run Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
-//    cell.textLabel.text = [[self.dataSource listOfRuns][indexPath.row] maxSpeed];
-//    cell.detailTextLabel.text = [[self.dataSource listOfRuns][indexPath.row] averageSpeed];
+    cell.textLabel.text = [[self.loggerVC getRunAtIndex:indexPath.row] maxSpeed];
+    cell.detailTextLabel.text = [[self.loggerVC getRunAtIndex:indexPath.row] averageSpeed];
     
     return cell;
 }

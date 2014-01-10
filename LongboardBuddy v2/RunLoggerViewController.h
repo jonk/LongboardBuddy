@@ -8,14 +8,20 @@
 
 #import <UIKit/UIKit.h>
 #import "LocationController.h"
+#import "Run.h"
 
 @interface RunLoggerViewController : UIViewController <CoreLocationControllerDelegate>
 
 - (IBAction)startPressed:(id)sender;
-- (IBAction)addRun:(id)sender;
 
 /* The location controller */
 @property (nonatomic, strong) LocationController *clController;
+
+/* The properties and methods for runs */
+@property (nonatomic, strong) NSMutableArray *listofRuns;
+- (IBAction)addRun:(id)sender;
+- (NSUInteger)numberOfRuns;
+- (Run *)getRunAtIndex:(NSUInteger)index;
 
 /* The properties that will be added to a run */
 @property (nonatomic, strong) NSString *maxSpeedString;

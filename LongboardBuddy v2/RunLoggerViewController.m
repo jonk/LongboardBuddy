@@ -8,7 +8,6 @@
 
 #import "RunLoggerViewController.h"
 #import <QuartzCore/QuartzCore.h>
-#import "ListOfRunsViewController.h"
 #import "TimerWithPause.h"
 
 @interface RunLoggerViewController ()
@@ -19,7 +18,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *maxSpeedLabel;
 @property (weak, nonatomic) IBOutlet UILabel *curSpeedLabel;
 @property (weak, nonatomic) IBOutlet UILabel *avgSpeedLabel;
-@property (nonatomic, strong) TimerWithPause *timer;
+
 @property (nonatomic) BOOL running;
 @property (nonatomic) NSTimeInterval startTime;
 @property (nonatomic) NSTimeInterval stoppedTime;
@@ -29,6 +28,12 @@
 @end
 
 @implementation RunLoggerViewController
+
+- (NSMutableArray *)listofRuns
+{
+    if (!_listofRuns) _listofRuns = [[NSMutableArray alloc] init];
+    return _listofRuns;
+}
 
 - (void)viewDidLoad
 {
@@ -45,6 +50,24 @@
         _clController.delegate = self;
     }
     return _clController;
+}
+
+- (IBAction)addRun:(id)sender
+{
+    Run *run = [[Run alloc] init];
+    [run addRunWithMaxSpeed:self.maxSpeedString averageSpeed:self.averageSpeedString time:self.timeString];
+    [self.listofRuns addObject:run];
+    NSLog(@"%@", self.listofRuns);
+}
+
+- (NSUInteger)numberOfRuns
+{
+    return [self.listofRuns count];
+}
+
+- (Run *)getRunAtIndex:(NSUInteger)index
+{
+    return self.listofRuns[index];
 }
 
 /** Is executed when the start/pause button is pressed.*/
@@ -73,7 +96,6 @@
  *  NS Date. */
 - (void)updateTimer
 {
-    
     if (!self.running) return;
     
     NSTimeInterval currentTime = [NSDate timeIntervalSinceReferenceDate];
