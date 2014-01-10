@@ -22,7 +22,6 @@
 {
     if (!_loggerVC) {
         if ([[self.tabBarController.viewControllers objectAtIndex:0] isKindOfClass:[RunLoggerViewController class]]) {
-            NSLog(@"It's the right view controller");
             RunLoggerViewController *runLoggerVC = (RunLoggerViewController *)[self.tabBarController.viewControllers objectAtIndex:0];
             _loggerVC = runLoggerVC;
         }
@@ -34,7 +33,6 @@
 {
     [super viewDidLoad];
     if ([[self.tabBarController.viewControllers objectAtIndex:0] isKindOfClass:[RunLoggerViewController class]]) {
-        NSLog(@"It's the right view controller");
         self.loggerVC = (RunLoggerViewController *)[self.tabBarController.viewControllers objectAtIndex:0];
     }
 }
@@ -50,7 +48,7 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -61,11 +59,12 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Run Cell";
+    static NSString *CellIdentifier = @"RunCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
-    cell.textLabel.text = [[self.loggerVC getRunAtIndex:indexPath.row] maxSpeed];
-    cell.detailTextLabel.text = [[self.loggerVC getRunAtIndex:indexPath.row] averageSpeed];
+    Run *run = [self.loggerVC getRunAtIndex:indexPath.row];
+    cell.textLabel.text = [NSString stringWithFormat:@"Max: %@", run.maxSpeed];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"Avg: %@", run.averageSpeed];
     
     return cell;
 }

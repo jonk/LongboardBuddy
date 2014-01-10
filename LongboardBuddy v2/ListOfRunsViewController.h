@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Run.h"
 
 @interface ListOfRunsViewController : UITableViewController
 

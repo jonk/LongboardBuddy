@@ -137,8 +137,8 @@
         self.maxSpeed = currentSpeed;
     }
     self.avgSpeed = (self.avgSpeed + currentSpeed) / 2;
-    self.averageSpeedString = [NSString stringWithFormat:@"%f", self.avgSpeed];
-    self.maxSpeedString = [NSString stringWithFormat:@"%f", self.maxSpeed];
+    self.averageSpeedString = [NSString stringWithFormat:@"%0.2F mph", self.avgSpeed];
+    self.maxSpeedString = [NSString stringWithFormat:@"%0.2F mph", self.maxSpeed];
     self.avgSpeedLabel.text = [NSString stringWithFormat:@"%0.2F mph", self.avgSpeed];
     self.maxSpeedLabel.text = [NSString stringWithFormat:@"%0.2F mph", self.maxSpeed];
     self.curSpeedLabel.text = [NSString stringWithFormat:@"%0.2F mph", currentSpeed];
