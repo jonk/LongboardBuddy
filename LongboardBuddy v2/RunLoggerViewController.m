@@ -41,6 +41,7 @@
 	self.running = NO;
     self.startTime = [NSDate timeIntervalSinceReferenceDate];
     self.addButton.hidden = YES;
+    self.view.backgroundColor = [UIColor whiteColor];
 }
 
 - (LocationController *)clController
@@ -57,7 +58,6 @@
     Run *run = [[Run alloc] init];
     [run addRunWithMaxSpeed:self.maxSpeedString averageSpeed:self.averageSpeedString time:self.timeString];
     [self.listofRuns addObject:run];
-    NSLog(@"%@", self.listofRuns);
 }
 
 - (NSUInteger)numberOfRuns
