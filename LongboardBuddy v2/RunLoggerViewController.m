@@ -19,11 +19,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *curSpeedLabel;
 @property (weak, nonatomic) IBOutlet UILabel *avgSpeedLabel;
 
-@property (nonatomic) BOOL running;
-@property (nonatomic) NSTimeInterval startTime;
-@property (nonatomic) NSTimeInterval stoppedTime;
 @property (nonatomic) double maxSpeed;
 @property (nonatomic) double avgSpeed;
+
+@property (nonatomic, strong) TimerWithPause *timer;
 
 @end
 
@@ -35,15 +34,6 @@
     return _listofRuns;
 }
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-	self.running = NO;
-    self.startTime = [NSDate timeIntervalSinceReferenceDate];
-    self.addButton.hidden = YES;
-    self.view.backgroundColor = [UIColor whiteColor];
-}
-
 - (LocationController *)clController
 {
     if (!_clController) {
@@ -51,6 +41,20 @@
         _clController.delegate = self;
     }
     return _clController;
+}
+
+- (TimerWithPause *)timer
+{
+    if (!_timer) _timer = [[TimerWithPause alloc] init];
+    return _timer;
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    self.addButton.hidden = YES;
+    self.view.backgroundColor = [UIColor whiteColor];
+    [self.timer initialize];
 }
 
 - (IBAction)addRun:(id)sender
@@ -73,45 +77,22 @@
 /** Is executed when the start/pause button is pressed.*/
 - (IBAction)startPressed:(UIButton *)sender
 {
-    NSTimeInterval currentTime = [NSDate timeIntervalSinceReferenceDate];
-    
-    if (!self.running) {
+    [self.timer startPressed];
+    if ([sender.titleLabel.text isEqualToString:@"START"]) {
         self.addButton.hidden = YES;
-        self.running = YES;
-        NSTimeInterval elapsed = currentTime - self.stoppedTime;
-        self.startTime = elapsed;
         [sender setTitle:@"PAUSE" forState:UIControlStateNormal];
         [self.clController.locationManager startUpdatingLocation];
         [self updateTimer];
     } else {
         self.addButton.hidden = NO;
-        [self.clController.locationManager stopUpdatingLocation];
-        currentTime = [NSDate timeIntervalSinceReferenceDate];
-        self.running = NO;
         [sender setTitle:@"START" forState:UIControlStateNormal];
+        [self.clController.locationManager stopUpdatingLocation];
     }
 }
 
-/** Performs some simple math to update the timer when it is running using
- *  NS Date. */
 - (void)updateTimer
 {
-    if (!self.running) return;
-    
-    NSTimeInterval currentTime = [NSDate timeIntervalSinceReferenceDate];
-    NSTimeInterval elapsed = currentTime - self.startTime;
-    self.stoppedTime = elapsed;
-    
-    int hours = (int) (elapsed / 3600.0);
-    elapsed -= hours * 3600.0;
-    int mins = (int) (elapsed / 60.0);
-    elapsed -= mins * 60;
-    int secs = (int) (elapsed);
-    elapsed -= secs;
-    int fraction = elapsed * 10.0;
-    
-    self.stopWatchLabel.text = [NSString
-                            stringWithFormat:@"%u:%02u:%02u.%u", hours, mins, secs, fraction];
+    self.stopWatchLabel.text = [self.timer getTime];
     self.timeString = self.stopWatchLabel.text;
     [self performSelector:@selector(updateTimer) withObject:self afterDelay:0.1];
 }
@@ -123,11 +104,16 @@
 
 - (double)getCurrentSpeedWithLocation:(CLLocation *)location
 {
-    double speed = [location speed] * 2.24;
+    double speed = [self getMPH:[location speed]];
     if (speed <= 0) {
         return 0.0;
     }
     return speed;
+}
+
+- (double)getMPH:(double)metersPerSecond
+{
+    return metersPerSecond * 2.24;
 }
 
 - (void)locationUpdate:(CLLocation *)location
@@ -137,11 +123,17 @@
         self.maxSpeed = currentSpeed;
     }
     self.avgSpeed = (self.avgSpeed + currentSpeed) / 2;
+    
     self.averageSpeedString = [NSString stringWithFormat:@"%0.2F mph", self.avgSpeed];
     self.maxSpeedString = [NSString stringWithFormat:@"%0.2F mph", self.maxSpeed];
+    
+    [self updateLocationGUI];
+}
+
+- (void)updateLocationGUI
+{
     self.avgSpeedLabel.text = [NSString stringWithFormat:@"%0.2F mph", self.avgSpeed];
     self.maxSpeedLabel.text = [NSString stringWithFormat:@"%0.2F mph", self.maxSpeed];
-    self.curSpeedLabel.text = [NSString stringWithFormat:@"%0.2F mph", currentSpeed];
 }
 
 

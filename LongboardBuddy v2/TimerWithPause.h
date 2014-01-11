@@ -8,8 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
-@interface TimerWithPause : NSObject
+@interface TimerWithPause : NSObject 
 
-- (void)updateTimer;
+- (void)initialize;
+- (void)startPressed;
+- (NSString *)getTime;
 
 @end
