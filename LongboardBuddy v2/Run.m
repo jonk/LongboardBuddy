@@ -15,11 +15,22 @@
 
 - (void)addRunWithMaxSpeed:(NSString *)maxSpeed
               averageSpeed:(NSString *)averageSpeed
-                      time:(NSString *)time {
+                      time:(NSString *)time
+                      date:(NSString *)date
+{
     
     self.maxSpeed = maxSpeed;
     self.averageSpeed = averageSpeed;
     self.time = time;
+    self.date = date;
+    
+}
+
+- (NSString *)getDate
+{
+    NSDateFormatter *dateFormatter=[[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"MM-dd-yyyy"];
+    return [dateFormatter stringFromDate:[NSDate date]];
     
 }
 

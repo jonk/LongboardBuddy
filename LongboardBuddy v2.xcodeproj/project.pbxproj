@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F92F3F521883B7FD00561473 /* RunDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F92F3F511883B7FD00561473 /* RunDetailViewController.m */; };
 		F96B407D17ADE88D00D6F13E /* ListOfRunsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F96B407C17ADE88D00D6F13E /* ListOfRunsViewController.m */; };
 		F96B408517ADEC4700D6F13E /* Run.m in Sources */ = {isa = PBXBuildFile; fileRef = F96B408417ADEC4700D6F13E /* Run.m */; };
 		F9AF8518187F63F100390F29 /* TimerWithPause.m in Sources */ = {isa = PBXBuildFile; fileRef = F9AF8517187F63F100390F29 /* TimerWithPause.m */; };
@@ -29,6 +30,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F92F3F501883B7FD00561473 /* RunDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RunDetailViewController.h; sourceTree = "<group>"; };
+		F92F3F511883B7FD00561473 /* RunDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RunDetailViewController.m; sourceTree = "<group>"; };
 		F96B407B17ADE88D00D6F13E /* ListOfRunsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListOfRunsViewController.h; sourceTree = "<group>"; };
 		F96B407C17ADE88D00D6F13E /* ListOfRunsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListOfRunsViewController.m; sourceTree = "<group>"; };
 		F96B408317ADEC4700D6F13E /* Run.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Run.h; sourceTree = "<group>"; };
@@ -128,6 +131,8 @@
 				F9EE34FA17ADE163001311CC /* RunLoggerViewController.m */,
 				F96B407B17ADE88D00D6F13E /* ListOfRunsViewController.h */,
 				F96B407C17ADE88D00D6F13E /* ListOfRunsViewController.m */,
+				F92F3F501883B7FD00561473 /* RunDetailViewController.h */,
+				F92F3F511883B7FD00561473 /* RunDetailViewController.m */,
 				F9AF8519187F640700390F29 /* Model */,
 				F9EE34A117ADD823001311CC /* Supporting Files */,
 			);
@@ -231,6 +236,7 @@
 				F9EE34C217ADD9BF001311CC /* LocationController.m in Sources */,
 				F9EE34FB17ADE164001311CC /* RunLoggerViewController.m in Sources */,
 				F96B407D17ADE88D00D6F13E /* ListOfRunsViewController.m in Sources */,
+				F92F3F521883B7FD00561473 /* RunDetailViewController.m in Sources */,
 				F9AF8518187F63F100390F29 /* TimerWithPause.m in Sources */,
 				F96B408517ADEC4700D6F13E /* Run.m in Sources */,
 			);

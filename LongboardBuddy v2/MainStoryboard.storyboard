@@ -6,7 +6,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
     <scenes>
-        <!--Run Logger View Controller - Controls-->
+        <!--Run Logger View Controller - Logger-->
         <scene sceneID="AVm-uL-Ecb">
             <objects>
                 <viewController id="cnV-Zy-WcO" customClass="RunLoggerViewController" sceneMemberID="viewController">
@@ -55,7 +55,7 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Current Speed" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ncv-y9-ObD">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Distance" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ncv-y9-ObD">
                                 <rect key="frame" x="20" y="354" width="100" height="25"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -72,7 +72,7 @@
                                     <action selector="addRun:" destination="cnV-Zy-WcO" eventType="touchUpInside" id="6bZ-3d-2Ww"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="0.00 mph" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LbE-ps-EKF">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="0 ft" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LbE-ps-EKF">
                                 <rect key="frame" x="38" y="387" width="65" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -87,12 +87,12 @@
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Controls" id="UJw-jL-uDW"/>
+                    <tabBarItem key="tabBarItem" title="Logger" id="UJw-jL-uDW"/>
                     <navigationItem key="navigationItem" id="zdX-KF-5F5"/>
                     <connections>
                         <outlet property="addButton" destination="9C9-3d-lp6" id="FQe-t0-VYO"/>
                         <outlet property="avgSpeedLabel" destination="96S-fZ-0tS" id="RZE-IB-TJy"/>
-                        <outlet property="curSpeedLabel" destination="LbE-ps-EKF" id="L3w-RY-1kP"/>
+                        <outlet property="distanceLabel" destination="LbE-ps-EKF" id="OjH-TY-qZp"/>
                         <outlet property="maxSpeedLabel" destination="xNO-Dh-To5" id="jPz-X7-5Hh"/>
                         <outlet property="startButton" destination="5lG-QU-uEo" id="js6-XR-GdQ"/>
                         <outlet property="stopWatchLabel" destination="vWY-73-zPr" id="anq-sd-LBJ"/>
@@ -102,7 +102,7 @@
             </objects>
             <point key="canvasLocation" x="64" y="-575"/>
         </scene>
-        <!--List Of Runs View Controller - Runs-->
+        <!--List Of Runs View Controller - Sessions-->
         <scene sceneID="rfU-Fb-4xt">
             <objects>
                 <tableViewController id="sDF-dn-NZh" customClass="ListOfRunsViewController" sceneMemberID="viewController">
@@ -111,29 +111,32 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="RunCell" textLabel="f6Z-oI-C9E" detailTextLabel="nxP-co-MIs" style="IBUITableViewCellStyleSubtitle" id="y3r-7T-ivD">
-                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="RunCell" textLabel="f6Z-oI-C9E" detailTextLabel="OHd-f2-eLI" style="IBUITableViewCellStyleValue1" id="y3r-7T-ivD">
+                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="y3r-7T-ivD" id="AaR-VH-sCH">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="f6Z-oI-C9E">
-                                            <rect key="frame" x="15" y="2" width="36" height="22"/>
+                                            <rect key="frame" x="15" y="11" width="33" height="21"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="nxP-co-MIs">
-                                            <rect key="frame" x="15" y="24" width="47" height="17"/>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="OHd-f2-eLI">
+                                            <rect key="frame" x="241" y="11" width="44" height="21"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
-                                            <color key="textColor" red="0.50196078431372548" green="0.50196078431372548" blue="0.50196078431372548" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="ZO2-Xf-JzC" kind="push" id="bro-2z-gc9"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -141,11 +144,67 @@
                             <outlet property="delegate" destination="sDF-dn-NZh" id="F3w-PL-mR7"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Runs" id="vDH-kJ-wPg"/>
+                    <navigationItem key="navigationItem" title="Sessions" id="eVD-4Z-xWv"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Gf-cx-Evy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="64" y="18"/>
+            <point key="canvasLocation" x="590" y="18"/>
+        </scene>
+        <!--Run Detail View Controller - Sesh-->
+        <scene sceneID="efu-cv-4jc">
+            <objects>
+                <viewController id="ZO2-Xf-JzC" customClass="RunDetailViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="RM3-4x-4jC"/>
+                        <viewControllerLayoutGuide type="bottom" id="P0Q-c6-8VA"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="9ah-Mr-iBP">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="0.00 mph" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oxc-pS-M8w">
+                                <rect key="frame" x="20" y="399" width="86" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Max Speed" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SUd-l4-goA">
+                                <rect key="frame" x="11" y="365" width="104" height="26"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Avg Speed" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sua-BA-lfg">
+                                <rect key="frame" x="221" y="365" width="88" height="26"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="0.00 mph" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tSL-60-iXg">
+                                <rect key="frame" x="230" y="399" width="70" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="AWESOME RUN BRO!!!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="33w-Rc-Wdx">
+                                <rect key="frame" x="65" y="219" width="255" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Sesh" id="ttb-XH-bsn"/>
+                    <connections>
+                        <outlet property="avgSpeedLabel" destination="tSL-60-iXg" id="Zdi-29-d5o"/>
+                        <outlet property="maxSpeedLabel" destination="Oxc-pS-M8w" id="Xo1-0H-Hwu"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dJt-GJ-n94" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1019" y="18"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="RIe-Ux-QeE">
@@ -159,12 +218,31 @@
                     </tabBar>
                     <connections>
                         <segue destination="cnV-Zy-WcO" kind="relationship" relationship="viewControllers" id="hre-Qy-XD3"/>
-                        <segue destination="sDF-dn-NZh" kind="relationship" relationship="viewControllers" id="FA9-ct-gEp"/>
+                        <segue destination="X9T-E3-O6B" kind="relationship" relationship="viewControllers" id="FA9-ct-gEp"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3dw-wE-yso" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-500" y="-189"/>
+        </scene>
+        <!--Navigation Controller - Runs-->
+        <scene sceneID="Vn1-tB-IHY">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="X9T-E3-O6B" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Runs" id="vDH-kJ-wPg"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="9l2-hC-hx3">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="sDF-dn-NZh" kind="relationship" relationship="rootViewController" id="rjr-NX-fQb"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Q53-Fb-9H1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="64" y="18"/>
         </scene>
     </scenes>
     <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>

@@ -16,11 +16,13 @@
 @property (weak, nonatomic) IBOutlet UIButton *startButton;
 @property (weak, nonatomic) IBOutlet UIButton *addButton;
 @property (weak, nonatomic) IBOutlet UILabel *maxSpeedLabel;
-@property (weak, nonatomic) IBOutlet UILabel *curSpeedLabel;
+@property (weak, nonatomic) IBOutlet UILabel *distanceLabel;
 @property (weak, nonatomic) IBOutlet UILabel *avgSpeedLabel;
 
 @property (nonatomic) double maxSpeed;
 @property (nonatomic) double avgSpeed;
+@property (nonatomic) double distanceTraveled;
+@property (nonatomic) CLLocation *startLocation;
 
 @property (nonatomic, strong) TimerWithPause *timer;
 
@@ -60,7 +62,7 @@
 - (IBAction)addRun:(id)sender
 {
     Run *run = [[Run alloc] init];
-    [run addRunWithMaxSpeed:self.maxSpeedString averageSpeed:self.averageSpeedString time:self.timeString];
+    [run addRunWithMaxSpeed:self.maxSpeedString averageSpeed:self.averageSpeedString time:self.timeString date:[run getDate]];
     [self.listofRuns addObject:run];
 }
 
@@ -82,6 +84,7 @@
         self.addButton.hidden = YES;
         [sender setTitle:@"PAUSE" forState:UIControlStateNormal];
         [self.clController.locationManager startUpdatingLocation];
+        self.startLocation = [self.clController.locationManager location];
         [self updateTimer];
     } else {
         self.addButton.hidden = NO;
@@ -116,8 +119,19 @@
     return metersPerSecond * 2.24;
 }
 
+- (void)incrementDistanceByLocation:(CLLocation *)location
+{
+    self.distanceTraveled += [location distanceFromLocation:self.startLocation] * 3.28084;
+    NSLog(@"%f",[location distanceFromLocation:self.startLocation] * 3.28084);
+    self.startLocation = location;
+//    NSLog(@"Location: %@, \nStart Location: %@", location, self.startLocation);
+
+}
+
 - (void)locationUpdate:(CLLocation *)location
 {
+//    [self incrementDistanceByLocation:location];
+    
     double currentSpeed = [self getCurrentSpeedWithLocation:location];
     if (currentSpeed > self.maxSpeed) {
         self.maxSpeed = currentSpeed;
@@ -134,6 +148,7 @@
 {
     self.avgSpeedLabel.text = [NSString stringWithFormat:@"%0.2F mph", self.avgSpeed];
     self.maxSpeedLabel.text = [NSString stringWithFormat:@"%0.2F mph", self.maxSpeed];
+    self.distanceLabel.text = [NSString stringWithFormat:@"%0.2F ft", self.distanceTraveled];
 }
 
 

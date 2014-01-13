@@ -13,10 +13,14 @@
 @property (nonatomic, strong) NSString *maxSpeed;
 @property (nonatomic, strong) NSString *averageSpeed;
 @property (nonatomic, strong) NSString *time;
+@property (nonatomic, strong) NSString *date;
 
 - (void)addRunWithMaxSpeed:(NSString *)maxSpeed
               averageSpeed:(NSString *)averageSpeed
-                      time:(NSString *)time;
+                      time:(NSString *)time
+                      date:(NSString *)date;
+
+- (NSString *)getDate;
 
 
 @end
